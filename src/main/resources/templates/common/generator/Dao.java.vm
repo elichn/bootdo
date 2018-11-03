@@ -1,0 +1,76 @@
+package ${package}.dao;
+
+import ${package}.domain.${className}DO;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * <p>Title: ${className}Dao</p>
+ * <p>Description: ${classname} Dao</p>
+ *
+ * @author ${author}
+ * @version ${version}
+ * @date ${datetime}
+ */
+@Mapper
+public interface ${className}Dao {
+
+    /**
+     * get 获取${className}DO
+     *
+     * @param map map
+     * @return ${className}DO
+     */
+	${className}DO get(${pk.attrType} ${pk.attrname});
+
+    /**
+     * list 获取${className}DO列表
+     *
+     * @param map map
+     * @return List<${className}DO>
+     */
+	List<${className}DO> list(Map<String, Object> map);
+
+    /**
+     * count 统计${className}条数
+     *
+     * @param map map
+     * @return 统计条数
+     */
+	int count(Map<String, Object> map);
+
+    /**
+     * save 保存${className}
+     *
+     * @param ${classname} ${classname}
+     * @return 保存成功条数
+     */
+	int save(${className}DO ${classname});
+
+    /**
+     * update 更新${className}
+     *
+     * @param ${classname} ${classname}
+     * @return 更新成功条数
+     */
+	int update(${className}DO ${classname});
+
+    /**
+     * remove 根据${pk.attrname}删除${className}
+     *
+     * @param ${classname} ${classname}
+     * @return 删除成功条数
+     */
+	int remove(${pk.attrType} ${pk.columnName});
+
+    /**
+     * batchRemove 根据${pk.attrname}s删除${className}
+     *
+     * @param ${classname} ${classname}
+     * @return 批量删除成功条数
+     */
+	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
+}
