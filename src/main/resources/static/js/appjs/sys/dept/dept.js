@@ -22,7 +22,7 @@ function load() {
 				columns : [
 					{
 						title : '序号',
-						field : 'deptId',
+						field : 'id',
 						visible : false,
 						align : 'center',
 						valign : 'center',
