@@ -411,7 +411,7 @@ body.mini-navbar .navbar-static-side {
     width: 70px;
 }
 
-.mini-navbar .nav li span, .mini-navbar .nav {
+.mini-navbar .nav li span, .mini-navbar .navbar-static-side .nav {
     display: none;
 }
 
