@@ -1,6 +1,8 @@
 package com.bootdo;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,9 +25,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableCaching
 public class BootdoApplication {
+
+    private static Logger LOG = LoggerFactory.getLogger(BootdoApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(BootdoApplication.class, args);
-        System.out.println("ヾ(◍°∇°◍)ﾉﾞ    bootdo启动成功      ヾ(◍°∇°◍)ﾉﾞ\n" +
+        LOG.info("ヾ(◍°∇°◍)ﾉﾞ    bootdo start success  ヾ(◍°∇°◍)ﾉﾞ\n" +
                 " ______                    _   ______            \n" +
                 "|_   _ \\                  / |_|_   _ `.          \n" +
                 "  | |_) |   .--.    .--. `| |-' | | `. \\  .--.   \n" +
