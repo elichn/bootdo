@@ -58,7 +58,7 @@
                        value="" placeholder="请输入用户名"/>
                 <input type="password" name="password"
                        class="form-control pword" value="" placeholder="请输入密码"/>
-                <a id="login" class="btn btn-login btn-block">登录</a>
+                <input type="button" id="login"  class="btn btn-login btn-block" value="登录" />
             </form>
         </div>
     </div>
@@ -82,6 +82,7 @@
     $(document).ready(function () {
         $("#login").on('click',function(){$("#signupForm").submit();});
         validateRule();
+        $("body").keydown(keyDownLogon);
     });
 
     $.validator.setDefaults({
@@ -89,6 +90,12 @@
             login();
         }
     });
+
+    function keyDownLogon(){
+        if (event.keyCode == "13") {
+            $("#login").trigger('click');
+        }
+    }
 
     function login() {
         $.ajax({
