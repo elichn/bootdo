@@ -270,6 +270,11 @@ $(function () {
             body.addClass('boxed-layout');
         }
     }
+
+    // 全屏显示
+    $('#fullScreen').on('click', function () {
+        $('#wrapper').fullScreen();
+    });
 });
 
 //判断浏览器是否支持html5本地存储

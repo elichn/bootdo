@@ -346,6 +346,7 @@ INSERT INTO `sys_menu` VALUES ('89', '85', '批量删除', 'oa/notify/batchRemov
 INSERT INTO `sys_menu` VALUES ('90', '84', '我的通知', 'oa/notify/selfNotify', '', '1', 'fa fa-envelope-square', null, null, null);
 INSERT INTO `sys_menu` VALUES ('91', '0', '系统监控', '', '', '0', 'fa fa-video-camera', '5', null, null);
 INSERT INTO `sys_menu` VALUES ('92', '91', '在线用户', 'sys/online', '', '1', 'fa fa-user', null, null, null);
+INSERT INTO `sys_menu` VALUES ('93', '77', 'swagger', '/swagger-ui.html', '', '1', '', null, null, null);
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -428,6 +429,7 @@ INSERT INTO `sys_role_menu` VALUES ('44', '1', '89');
 INSERT INTO `sys_role_menu` VALUES ('45', '1', '90');
 INSERT INTO `sys_role_menu` VALUES ('46', '1', '91');
 INSERT INTO `sys_role_menu` VALUES ('47', '1', '92');
+INSERT INTO `sys_role_menu` VALUES ('48', '1', '93');
 
 -- ----------------------------
 -- Table structure for `sys_task`

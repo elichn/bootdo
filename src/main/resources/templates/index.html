@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>面向学习型的开源框架，简洁高效，减少过渡封装，展现技术本质</title>
-    <meta name="keywords" content="面向学习型的开源框架，简洁高效，杜绝过渡封装，展现技术本质本质">
-    <meta name="description" content="面向学习型的开源框架，简洁高效，杜绝过渡封装，展现技术本质本质">
+    <title>bootdo</title>
+    <meta name="keywords" content="bootdo">
+    <meta name="description" content="bootdo">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -145,6 +145,8 @@
                             <!--class="right-sidebar-toggle" aria-expanded="false"> <i-->
                             <!--class="fa fa-tasks"></i> 主题-->
                     <!--</a></li>-->
+
+                    <li class="hidden-xs"><a id="fullScreen"><i class="fa fa-arrows-alt"></i>全屏</a></li>
 
                     <li class="hidden-xs"><a href="/logout" target="_Blank" class="fa fa fa-sign-out">退出</a></li>
                 </ul>
@@ -309,6 +311,7 @@
 <script src="/js/appjs/oa/webSocket/stomp.min.js"></script>
 <!-- Toastr script -->
 <script src="/js/plugins/toastr/toastr.min.js"></script>
+<script src="/js/plugins/fullscreen/jquery.fullscreen.js"></script>
 <script type="text/javascript">
     var stompClient = null;
     $(function () {
