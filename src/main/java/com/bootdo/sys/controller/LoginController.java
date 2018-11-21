@@ -94,8 +94,8 @@ public class LoginController extends BaseController {
      * @return R
      */
     @Log("登录")
-    @PostMapping("/login")
     @ResponseBody
+    @PostMapping("/login")
     public R ajaxLogin(String username, String password) {
 
         password = MD5Utils.encrypt(username, password);

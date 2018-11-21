@@ -36,8 +36,8 @@ public class RoleController extends BaseController {
      *
      * @return String
      */
-    @RequiresPermissions("sys:role:role")
     @GetMapping()
+    @RequiresPermissions("sys:role:role")
     public String role() {
         return prefix + "/role";
     }
@@ -47,9 +47,9 @@ public class RoleController extends BaseController {
      *
      * @return List<RoleDO>
      */
-    @RequiresPermissions("sys:role:role")
-    @GetMapping("/list")
     @ResponseBody()
+    @GetMapping("/list")
+    @RequiresPermissions("sys:role:role")
     public List<RoleDO> list() {
         List<RoleDO> roles = roleService.list();
         return roles;
@@ -61,8 +61,8 @@ public class RoleController extends BaseController {
      * @return
      */
     @Log("添加角色")
-    @RequiresPermissions("sys:role:add")
     @GetMapping("/add")
+    @RequiresPermissions("sys:role:add")
     public String add() {
         return prefix + "/add";
     }
@@ -75,8 +75,8 @@ public class RoleController extends BaseController {
      * @return String
      */
     @Log("编辑角色")
-    @RequiresPermissions("sys:role:edit")
     @GetMapping("/edit/{id}")
+    @RequiresPermissions("sys:role:edit")
     public String edit(@PathVariable("id") Long id, Model model) {
         RoleDO roleDO = roleService.get(id);
         model.addAttribute("role", roleDO);
@@ -90,9 +90,9 @@ public class RoleController extends BaseController {
      * @return R
      */
     @Log("保存角色")
-    @RequiresPermissions("sys:role:add")
-    @PostMapping("/save")
     @ResponseBody()
+    @PostMapping("/save")
+    @RequiresPermissions("sys:role:add")
     public R save(RoleDO role) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -111,9 +111,9 @@ public class RoleController extends BaseController {
      * @return R
      */
     @Log("更新角色")
-    @RequiresPermissions("sys:role:edit")
-    @PostMapping("/update")
     @ResponseBody()
+    @PostMapping("/update")
+    @RequiresPermissions("sys:role:edit")
     public R update(RoleDO role) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -132,9 +132,9 @@ public class RoleController extends BaseController {
      * @return R
      */
     @Log("删除角色")
-    @RequiresPermissions("sys:role:remove")
-    @PostMapping("/remove")
     @ResponseBody()
+    @PostMapping("/remove")
+    @RequiresPermissions("sys:role:remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -152,10 +152,10 @@ public class RoleController extends BaseController {
      * @param ids ids
      * @return R
      */
-    @RequiresPermissions("sys:role:batchRemove")
     @Log("批量删除角色")
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
+    @RequiresPermissions("sys:role:batchRemove")
     public R batchRemove(@RequestParam("ids[]") Long[] ids) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");

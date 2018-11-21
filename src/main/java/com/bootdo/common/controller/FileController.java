@@ -54,20 +54,20 @@ public class FileController extends BaseController {
     }
 
     @GetMapping("/add")
-        // @RequiresPermissions("common:bComments")
+    // @RequiresPermissions("common:bComments")
     public String add() {
         return "common/sysFile/add";
     }
 
     @GetMapping("/edit")
-        // @RequiresPermissions("common:bComments")
+    // @RequiresPermissions("common:bComments")
     public String edit(Long id, Model model) {
         FileDO sysFile = sysFileService.get(id);
         model.addAttribute("sysFile", sysFile);
         return "common/sysFile/edit";
     }
 
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     @RequiresPermissions("common:info")
     public R info(@PathVariable("id") Long id) {
         FileDO sysFile = sysFileService.get(id);
@@ -84,7 +84,7 @@ public class FileController extends BaseController {
         return R.error();
     }
 
-    @RequestMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("common:update")
     public R update(@RequestBody FileDO sysFile) {
         sysFileService.update(sysFile);
@@ -111,8 +111,8 @@ public class FileController extends BaseController {
         }
     }
 
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
     @RequiresPermissions("common:remove")
     public R remove(@RequestParam("ids[]") Long[] ids) {
         if ("test".equals(getUsername())) {

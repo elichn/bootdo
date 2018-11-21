@@ -39,8 +39,8 @@ public class MenuController extends BaseController {
      * @param model model
      * @return String
      */
-    @RequiresPermissions("sys:menu:menu")
     @GetMapping()
+    @RequiresPermissions("sys:menu:menu")
     public String menu(Model model) {
         return prefix + "/menu";
     }
@@ -51,9 +51,9 @@ public class MenuController extends BaseController {
      * @param params params
      * @return List<MenuDO>
      */
-    @RequiresPermissions("sys:menu:menu")
-    @RequestMapping("/list")
     @ResponseBody
+    @GetMapping("/list")
+    @RequiresPermissions("sys:menu:menu")
     public List<MenuDO> list(@RequestParam Map<String, Object> params) {
         List<MenuDO> menus = menuService.list(params);
         return menus;
@@ -67,8 +67,8 @@ public class MenuController extends BaseController {
      * @return String
      */
     @Log("添加菜单")
-    @RequiresPermissions("sys:menu:add")
     @GetMapping("/add/{pId}")
+    @RequiresPermissions("sys:menu:add")
     public String add(Model model, @PathVariable("pId") Long pId) {
         model.addAttribute("pId", pId);
         if (pId == 0) {
@@ -87,8 +87,8 @@ public class MenuController extends BaseController {
      * @return String
      */
     @Log("编辑菜单")
-    @RequiresPermissions("sys:menu:edit")
     @GetMapping("/edit/{id}")
+    @RequiresPermissions("sys:menu:edit")
     public String edit(Model model, @PathVariable("id") Long id) {
         MenuDO mdo = menuService.get(id);
         Long pId = mdo.getParentId();
@@ -109,9 +109,9 @@ public class MenuController extends BaseController {
      * @return R
      */
     @Log("保存菜单")
-    @RequiresPermissions("sys:menu:add")
-    @PostMapping("/save")
     @ResponseBody
+    @PostMapping("/save")
+    @RequiresPermissions("sys:menu:add")
     public R save(MenuDO menu) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -130,9 +130,9 @@ public class MenuController extends BaseController {
      * @return R
      */
     @Log("更新菜单")
-    @RequiresPermissions("sys:menu:edit")
-    @PostMapping("/update")
     @ResponseBody
+    @PostMapping("/update")
+    @RequiresPermissions("sys:menu:edit")
     public R update(MenuDO menu) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -151,9 +151,9 @@ public class MenuController extends BaseController {
      * @return R
      */
     @Log("删除菜单")
-    @RequiresPermissions("sys:menu:remove")
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
+    @RequiresPermissions("sys:menu:remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -170,8 +170,8 @@ public class MenuController extends BaseController {
      *
      * @return Tree<MenuDO>
      */
-    @GetMapping("/tree")
     @ResponseBody
+    @GetMapping("/tree")
     public Tree<MenuDO> tree() {
         Tree<MenuDO> tree = menuService.getTree();
         return tree;
@@ -183,8 +183,8 @@ public class MenuController extends BaseController {
      * @param roleId roleId
      * @return Tree<MenuDO>
      */
-    @GetMapping("/tree/{roleId}")
     @ResponseBody
+    @GetMapping("/tree/{roleId}")
     public Tree<MenuDO> tree(@PathVariable("roleId") Long roleId) {
         Tree<MenuDO> tree = menuService.getTree(roleId);
         return tree;

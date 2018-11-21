@@ -103,7 +103,7 @@ public class ${className}Controller {
 	 * @return R
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("${pathName}:${classname}:edit")
 	public R update(${className}DO ${classname}) {
 		${classname}Service.update(${classname});
@@ -115,8 +115,8 @@ public class ${className}Controller {
      *
 	 * @return R
 	 */
-	@PostMapping("/remove")
 	@ResponseBody
+    @PostMapping("/remove")
 	@RequiresPermissions("${pathName}:${classname}:remove")
 	public R remove(${pk.attrType} ${pk.attrname}) {
 		if (${classname}Service.remove(${pk.attrname}) > 0) {
@@ -130,8 +130,8 @@ public class ${className}Controller {
      *
 	 * @return R
 	 */
+    @ResponseBody
     @PostMapping("/batchRemove")
-	@ResponseBody
 	@RequiresPermissions("${pathName}:${classname}:batchRemove")
 	public R batchRemove(@RequestParam("ids[]") ${pk.attrType}[] ${pk.attrname}s) {
 		${classname}Service.batchRemove(${pk.attrname}s);

@@ -57,7 +57,7 @@ public class JobController extends BaseController {
         return "common/job/edit";
     }
 
-    @RequestMapping("/info/{id}")
+    @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Long id) {
         TaskDO taskScheduleJob = taskScheduleJobService.get(id);
         return R.ok().put("taskScheduleJob", taskScheduleJob);
@@ -85,8 +85,8 @@ public class JobController extends BaseController {
         return R.ok();
     }
 
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -97,8 +97,8 @@ public class JobController extends BaseController {
         return R.error();
     }
 
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
     public R remove(@RequestParam("ids[]") Long[] ids) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -108,8 +108,8 @@ public class JobController extends BaseController {
         return R.ok();
     }
 
-    @PostMapping(value = "/changeJobStatus")
     @ResponseBody
+    @PostMapping(value = "/changeJobStatus")
     public R changeJobStatus(Long id, String cmd) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");

@@ -5,7 +5,8 @@ import com.bootdo.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,8 +29,7 @@ public class MainsiteErrorController implements ErrorController {
     @Autowired
     ErrorAttributes errorAttributes;
 
-    @RequestMapping(value = {ERROR_PATH}, produces = {"text/html"}
-    )
+    @GetMapping(value = {ERROR_PATH}, produces = {"text/html"})
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
         int code = response.getStatus();
         if (404 == code) {
@@ -44,7 +44,7 @@ public class MainsiteErrorController implements ErrorController {
 
     }
 
-    @RequestMapping(value = ERROR_PATH)
+    @PostMapping(value = ERROR_PATH)
     public R handleError(HttpServletRequest request, HttpServletResponse response) {
         response.setStatus(200);
         int code = response.getStatus();
