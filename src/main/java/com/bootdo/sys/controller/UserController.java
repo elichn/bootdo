@@ -52,8 +52,8 @@ public class UserController extends BaseController {
      * @param model model
      * @return String
      */
+    @GetMapping()
     @RequiresPermissions("sys:user:user")
-    @GetMapping("")
     public String user(Model model) {
         return prefix + "/user";
     }
@@ -64,8 +64,8 @@ public class UserController extends BaseController {
      * @param params params
      * @return PageUtils
      */
-    @GetMapping("/list")
     @ResponseBody
+    @GetMapping("/list")
     public PageUtils list(@RequestParam Map<String, Object> params) {
         // 查询列表数据
         Query query = new Query(params);
@@ -81,9 +81,9 @@ public class UserController extends BaseController {
      * @param model model
      * @return String
      */
-    @RequiresPermissions("sys:user:add")
     @Log("添加用户")
     @GetMapping("/add")
+    @RequiresPermissions("sys:user:add")
     public String add(Model model) {
         List<RoleDO> roles = roleService.list();
         model.addAttribute("roles", roles);
@@ -97,9 +97,9 @@ public class UserController extends BaseController {
      * @param id    id
      * @return String
      */
-    @RequiresPermissions("sys:user:edit")
     @Log("编辑用户")
     @GetMapping("/edit/{id}")
+    @RequiresPermissions("sys:user:edit")
     public String edit(Model model, @PathVariable("id") Long id) {
         UserDO userDO = userService.get(id);
         model.addAttribute("user", userDO);
@@ -114,10 +114,11 @@ public class UserController extends BaseController {
      * @param user user
      * @return R
      */
-    @RequiresPermissions("sys:user:add")
+
     @Log("保存用户")
-    @PostMapping("/save")
     @ResponseBody
+    @PostMapping("/save")
+    @RequiresPermissions("sys:user:add")
     public R save(UserDO user) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -135,10 +136,10 @@ public class UserController extends BaseController {
      * @param user user
      * @return R
      */
-    @RequiresPermissions("sys:user:edit")
     @Log("更新用户")
-    @PostMapping("/update")
     @ResponseBody
+    @PostMapping("/update")
+    @RequiresPermissions("sys:user:edit")
     public R update(UserDO user) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -155,10 +156,10 @@ public class UserController extends BaseController {
      * @param user user
      * @return R
      */
-    @RequiresPermissions("sys:user:edit")
     @Log("更新用户")
-    @PostMapping("/updatePeronal")
     @ResponseBody
+    @PostMapping("/updatePeronal")
+    @RequiresPermissions("sys:user:edit")
     public R updatePeronal(UserDO user) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -175,10 +176,11 @@ public class UserController extends BaseController {
      * @param id id
      * @return R
      */
-    @RequiresPermissions("sys:user:remove")
+
     @Log("删除用户")
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
+    @RequiresPermissions("sys:user:remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -195,10 +197,10 @@ public class UserController extends BaseController {
      * @param userIds userIds
      * @return R
      */
-    @RequiresPermissions("sys:user:batchRemove")
     @Log("批量删除用户")
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
+    @RequiresPermissions("sys:user:batchRemove")
     public R batchRemove(@RequestParam("ids[]") Long[] userIds) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -216,8 +218,8 @@ public class UserController extends BaseController {
      * @param params params
      * @return boolean
      */
-    @PostMapping("/exit")
     @ResponseBody
+    @PostMapping("/exit")
     public boolean exit(@RequestParam Map<String, Object> params) {
         // 存在，不通过，false
         return !userService.exit(params);
@@ -230,9 +232,9 @@ public class UserController extends BaseController {
      * @param model model
      * @return String
      */
-    @RequiresPermissions("sys:user:resetPwd")
     @Log("请求更改用户密码")
     @GetMapping("/resetPwd/{id}")
+    @RequiresPermissions("sys:user:resetPwd")
     public String resetPwd(@PathVariable("id") Long id, Model model) {
         UserDO userDO = new UserDO();
         userDO.setId(id);
@@ -247,8 +249,8 @@ public class UserController extends BaseController {
      * @return R
      */
     @Log("提交更改用户密码")
-    @PostMapping("/resetPwd")
     @ResponseBody
+    @PostMapping("/resetPwd")
     public R resetPwd(UserVO userVO) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -268,10 +270,11 @@ public class UserController extends BaseController {
      * @param userVO userVO
      * @return R
      */
-    @RequiresPermissions("sys:user:resetPwd")
+
     @Log("admin提交更改用户密码")
-    @PostMapping("/adminResetPwd")
     @ResponseBody
+    @PostMapping("/adminResetPwd")
+    @RequiresPermissions("sys:user:resetPwd")
     public R adminResetPwd(UserVO userVO) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
             return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -289,8 +292,8 @@ public class UserController extends BaseController {
      *
      * @return Tree<DeptDO>
      */
-    @GetMapping("/tree")
     @ResponseBody
+    @GetMapping("/tree")
     public Tree<DeptDO> tree() {
         Tree<DeptDO> tree = userService.getTree();
         return tree;

@@ -6,10 +6,7 @@ import com.bootdo.sys.service.SessionService;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
@@ -46,7 +43,7 @@ public class SessionController {
      * @return List<UserOnline>
      */
     @ResponseBody
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public List<UserOnline> list() {
         return sessionService.list();
     }
@@ -59,7 +56,7 @@ public class SessionController {
      * @return R
      */
     @ResponseBody
-    @RequestMapping("/forceLogout/{sessionId}")
+    @PostMapping("/forceLogout/{sessionId}")
     public R forceLogout(@PathVariable("sessionId") String sessionId, RedirectAttributes redirectAttributes) {
         try {
             sessionService.forceLogout(sessionId);
@@ -76,7 +73,7 @@ public class SessionController {
      * @return Collection<Session>
      */
     @ResponseBody
-    @RequestMapping("/sessionList")
+    @GetMapping("/sessionList")
     public Collection<Session> sessionList() {
         return sessionService.sessionList();
     }

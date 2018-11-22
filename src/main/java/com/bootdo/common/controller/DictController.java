@@ -77,7 +77,7 @@ public class DictController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("common:dict:edit")
     public R update(DictDO dict) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -87,8 +87,8 @@ public class DictController extends BaseController {
         return R.ok();
     }
 
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
     @RequiresPermissions("common:dict:remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -100,8 +100,8 @@ public class DictController extends BaseController {
         return R.error();
     }
 
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
     @RequiresPermissions("common:dict:batchRemove")
     public R remove(@RequestParam("ids[]") Long[] ids) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {

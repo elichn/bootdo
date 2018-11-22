@@ -49,7 +49,7 @@ public class GeneratorController {
         return list;
     }
 
-    @RequestMapping("/code/{tableName}")
+    @GetMapping("/code/{tableName}")
     public void code(HttpServletRequest request, HttpServletResponse response,
                      @PathVariable("tableName") String tableName) throws IOException {
         String[] tableNames = new String[]{tableName};
@@ -62,7 +62,7 @@ public class GeneratorController {
         IOUtils.write(data, response.getOutputStream());
     }
 
-    @RequestMapping("/batchCode")
+    @GetMapping("/batchCode")
     public void batchCode(HttpServletRequest request, HttpServletResponse response, String tables) throws IOException {
         String[] tableNames = new String[]{};
         tableNames = JSON.parseArray(tables).toArray(tableNames);

@@ -120,7 +120,7 @@ public class DeptController extends BaseController {
      * @return R
      */
     @ResponseBody
-    @RequestMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("sys:dept:edit")
     public R update(DeptDO dept) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -138,8 +138,8 @@ public class DeptController extends BaseController {
      * @param deptId deptId
      * @return R
      */
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
     @RequiresPermissions("sys:dept:remove")
     public R remove(Long deptId) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -166,8 +166,8 @@ public class DeptController extends BaseController {
      * @param deptIds deptIds
      * @return R
      */
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
     @RequiresPermissions("sys:dept:batchRemove")
     public R batchRemove(@RequestParam("ids[]") Long[] deptIds) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -182,8 +182,8 @@ public class DeptController extends BaseController {
      *
      * @return Tree<DeptDO>
      */
-    @GetMapping("/tree")
     @ResponseBody
+    @GetMapping("/tree")
     public Tree<DeptDO> tree() {
         Tree<DeptDO> tree = sysDeptService.getTree();
         return tree;

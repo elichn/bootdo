@@ -102,7 +102,7 @@ public class NotifyController extends BaseController {
      * 修改
      */
     @ResponseBody
-    @RequestMapping("/update")
+    @PostMapping("/update")
     @RequiresPermissions("oa:notify:edit")
     public R update(NotifyDO notify) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -115,8 +115,8 @@ public class NotifyController extends BaseController {
     /**
      * 删除
      */
-    @PostMapping("/remove")
     @ResponseBody
+    @PostMapping("/remove")
     @RequiresPermissions("oa:notify:remove")
     public R remove(Long id) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
@@ -131,8 +131,8 @@ public class NotifyController extends BaseController {
     /**
      * 删除
      */
-    @PostMapping("/batchRemove")
     @ResponseBody
+    @PostMapping("/batchRemove")
     @RequiresPermissions("oa:notify:batchRemove")
     public R remove(@RequestParam("ids[]") Long[] ids) {
         if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
