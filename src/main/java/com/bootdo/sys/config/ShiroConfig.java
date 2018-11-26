@@ -140,8 +140,11 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        // sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
+        // 设置全局session超时时间
         sessionManager.setGlobalSessionTimeout(12 * 60 * 60 * 1000);
+        // 去掉 JSESSIONID
+        sessionManager.setSessionIdUrlRewritingEnabled(false);
+        // 自定义SessionDao
         sessionManager.setSessionDAO(sessionDAO());
         Collection<SessionListener> listeners = new ArrayList<SessionListener>();
         listeners.add(new BDSessionListener());
