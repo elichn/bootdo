@@ -1,4 +1,4 @@
-package com.bootdo.testDemo;
+package com.bootdo.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
